@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+.body-home {
+  background-image: url(../img/test1.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.black-fill {
+  background: rgba(0, 0, 0, 0.7);
+  min-height: 100vh;
+}
+
+#homeNav {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 20px;
+}
+
+.welcome-text {
+  min-height: 80vh;
+}
+.welcome-text img {
+  width: 150px;
+}
+.welcome-text h4 {
+  color: #eee;
+  font-size: 51px;
+  font-family: "Lobster", cursive;
+}
+.welcome-text p {
+  color: #222;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 5px;
+  border-radius: 8px;
+}
+
+#about {
+  min-height: 100vh;
+}
+#about .card-1 {
+  max-width: 600px;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  border-radius: 20px;
+}
+#about .card-1 h5 {
+  font-family: "Lobster", cursive;
+  font-size: 30px;
+}
+
+#contact {
+  min-height: 100vh;
+}
+#contact form {
+  max-width: 600px;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  border-radius: 20px;
+}
+#contact form h3 {
+  text-align: center;
+  font-family: "Lobster", cursive;
+}
+
+textarea {
+  resize: none;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+.footer .footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3.5rem;
+  padding: 60px 60px 20px 60px;
+}
+
+.footer-row .footer-content h4 {
+  color: orange;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.footer-content .links {
+  margin-top: 20px;
+}
+
+.footer-content .links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.footer-content .links li a {
+  text-decoration: none;
+  color: #110d0d;
+  margin-left: -30px;
+}
+
+.footer-content .links li a:hover {
+  color: white;
+}
+
+.footer-content p {
+  margin: 20px 0;
+  color: #110d0d;
+  max-width: 300px;
+}
+
+.footer-content form {
+  display: flex;
+  gap: 5px;
+}
+
+.footer-content input {
+  height: 40px;
+  border-radius: 6px;
+  background: none;
+  width: 100%;
+  outline: none;
+  border: 1px solid orange;
+  caret-color: white;
+  color: #110d0d;
+  padding-left: 10px;
+}
+
+.footer-content input::placeholder {
+  color: #110d0d;
+}
+
+.footer-content form button {
+  background: orange;
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.footer-content form button:hover {
+  background: white;
+}
+
+.footer-content .icon {
+  display: flex;
+  margin-top: 30px;
+  gap: 30px;
+  cursor: pointer;
+}
+
+.footer-content .icon i {
+  color: #110d0d;
+}
+
+.footer-content .icon i:hover {
+  color: orange;
+}
