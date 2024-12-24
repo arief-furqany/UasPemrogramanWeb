@@ -55,6 +55,43 @@
           <!--
           Isikan codingan CRUD phpnya disini 
            -->
+           <?php
+// Koneksi ke database
+include '../koneksi.php';
+
+// Query untuk mengambil data buku
+$sql = "SELECT * FROM buku";
+$result = mysqli_query($conn, $sql);
+
+// Cek jika ada data
+if (mysqli_num_rows($result) > 0) {
+    echo '<table class="table table-striped text-light">';
+    echo '<thead>';
+    echo '<tr><th>No</th><th>Judul Buku</th><th>Penulis</th><th>Kategori</th><th>Aksi</th></tr>';
+    echo '</thead>';
+    echo '<tbody>';
+    
+    $no = 1;
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '<tr>';
+        echo '<td>' . $no++ . '</td>';
+        echo '<td>' . htmlspecialchars($row['judul']) . '</td>';
+        echo '<td>' . htmlspecialchars($row['penulis']) . '</td>';
+        echo '<td>' . htmlspecialchars($row['kategori']) . '</td>';
+        echo '<td>';
+        echo '<a href="../crud/aksi_buku_edit.php?id=' . $row['id'] . '" class="btn btn-warning btn-sm">Edit</a> ';
+        echo '<a href="../crud/aksi_buku_delete.php?id=' . $row['id'] . '" class="btn btn-danger btn-sm" onclick="return confirm(\'Yakin ingin menghapus?\')">Hapus</a>';
+        echo '</td>';
+        echo '</tr>';
+    }
+
+    echo '</tbody>';
+    echo '</table>';
+} else {
+    echo '<p class="text-light">Tidak ada data buku.</p>';
+}
+?>
+
 
         
         <br>

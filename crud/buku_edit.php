@@ -49,6 +49,60 @@
            <!--
           Isikan codingan CRUD phpnya disini 
            -->
+           <?php
+          // Koneksi ke database
+          include '../koneksi.php';
+
+          // Ambil ID dari parameter URL
+          $id_buku = $_GET['id'];
+
+          // Query untuk mendapatkan data buku berdasarkan ID
+          $sql = "SELECT * FROM buku WHERE id = $id_buku";
+          $result = mysqli_query($conn, $sql);
+
+          // Jika data ditemukan
+          if ($result && mysqli_num_rows($result) > 0) {
+              $buku = mysqli_fetch_assoc($result);
+          } else {
+              echo '<p class="text-light">Buku tidak ditemukan!</p>';
+              exit;
+          }
+
+          // Proses ketika form disubmit
+          if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+              $judul = $_POST['judul'];
+              $penulis = $_POST['penulis'];
+              $kategori = $_POST['kategori'];
+
+              // Update data buku ke database
+              $sql_update = "UPDATE buku SET judul='$judul', penulis='$penulis', kategori='$kategori' WHERE id=$id_buku";
+
+              if (mysqli_query($conn, $sql_update)) {
+                  echo '<div class="alert alert-success">Data buku berhasil diperbarui!</div>';
+              } else {
+                  echo '<div class="alert alert-danger">Gagal memperbarui data buku: ' . mysqli_error($conn) . '</div>';
+              }
+          }
+          ?>
+
+          <!-- Form Edit Buku -->
+          <form method="POST" action="" class="text-light w-50">
+              <div class="mb-3">
+                  <label for="judul" class="form-label">Judul Buku</label>
+                  <input type="text" class="form-control" id="judul" name="judul" value="<?= htmlspecialchars($buku['judul']) ?>" required>
+              </div>
+              <div class="mb-3">
+                  <label for="penulis" class="form-label">Penulis</label>
+                  <input type="text" class="form-control" id="penulis" name="penulis" value="<?= htmlspecialchars($buku['penulis']) ?>" required>
+              </div>
+              <div class="mb-3">
+                  <label for="kategori" class="form-label">Kategori</label>
+                  <input type="text" class="form-control" id="kategori" name="kategori" value="<?= htmlspecialchars($buku['kategori']) ?>" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+              <a href="../buku/daftar_buku.php" class="btn btn-secondary">Kembali</a>
+          </form>
+
 
 
         <br>

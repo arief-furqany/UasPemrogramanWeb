@@ -35,9 +35,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../index.php"
-                    >Home</a>
+                  <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
                 </li>
+              </ul>
             </div>
           </div>
         </nav>
@@ -46,11 +46,41 @@
           class="d-flex justify-content-center align-items-center flex-column"
         >
         
+         <?php
+         // Koneksi ke database
+         include '../koneksi.php';
 
-         <!--
-          Isikan codingan CRUD phpnya disini 
-           -->
+         // Proses ketika form disubmit
+         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+             $nama_kategori = $_POST['nama_kategori'];
 
+             // Query untuk menambahkan data kategori
+             $sql = "INSERT INTO kategori (nama_kategori) VALUES ('$nama_kategori')";
+
+             if (mysqli_query($conn, $sql)) {
+                 echo '<div class="alert alert-success">Kategori berhasil ditambahkan!</div>';
+             } else {
+                 echo '<div class="alert alert-danger">Gagal menambahkan kategori: ' . mysqli_error($conn) . '</div>';
+             }
+         }
+         ?>
+
+         <!-- Form Input Kategori -->
+         <form method="POST" action="" class="text-light w-50">
+             <div class="mb-3">
+                 <label for="nama_kategori" class="form-label">Nama Kategori</label>
+                 <input
+                     type="text"
+                     class="form-control"
+                     id="nama_kategori"
+                     name="nama_kategori"
+                     placeholder="Masukkan nama kategori"
+                     required
+                 >
+             </div>
+             <button type="submit" class="btn btn-primary">Tambah Kategori</button>
+             <a href="../kategori/kategori.php" class="btn btn-secondary">Kembali</a>
+         </form>
 
         <br>
         <br>

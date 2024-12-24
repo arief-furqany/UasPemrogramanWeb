@@ -52,9 +52,38 @@
           class="d-flex justify-content-center align-items-center flex-column">
 
 
-           <!--
-          Isikan codingan CRUD phpnya disini 
-           -->
+           <?php
+           // Koneksi ke database
+           include '../koneksi.php';
+
+           // Query untuk mengambil data kategori
+           $sql = "SELECT * FROM kategori";
+           $result = mysqli_query($conn, $sql);
+
+           // Tampilkan data dalam tabel
+           if (mysqli_num_rows($result) > 0) {
+               echo '<table class="table table-striped text-light">';
+               echo '<thead><tr><th>No</th><th>Nama Kategori</th><th>Aksi</th></tr></thead>';
+               echo '<tbody>';
+
+               $no = 1;
+               while ($row = mysqli_fetch_assoc($result)) {
+                   echo '<tr>';
+                   echo '<td>' . $no++ . '</td>';
+                   echo '<td>' . htmlspecialchars($row['nama_kategori']) . '</td>';
+                   echo '<td>';
+                   echo '<a href="../kategori/edit_kategori.php?id=' . $row['id'] . '" class="btn btn-warning btn-sm">Edit</a> ';
+                   echo '<a href="../kategori/delete_kategori.php?id=' . $row['id'] . '" class="btn btn-danger btn-sm" onclick="return confirm(\'Yakin ingin menghapus?\')">Hapus</a>';
+                   echo '</td>';
+                   echo '</tr>';
+               }
+
+               echo '</tbody>';
+               echo '</table>';
+           } else {
+               echo '<p class="text-light">Tidak ada data kategori.</p>';
+           }
+           ?>
 
 
         <br>
